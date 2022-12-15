@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 38 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-2178.56,-463.127)">
+        <g id="Artboard17" transform="matrix(1.09392,0,0,0.888808,-198.658,52.8648)">
+            <rect x="2173.11" y="461.587" width="34.737" height="38.253" style="fill:none;"/>
+            <g transform="matrix(0.914143,0,0,1.1251,172.191,-3.20122)">
+                <g transform="matrix(1,0,0,1,2218.42,414.94)">
+                    <path d="M0,30.335L-25.739,4.596C-27.008,3.327 -27.008,1.269 -25.739,0C-24.469,-1.269 -22.412,-1.269 -21.142,0L4.596,25.739C5.865,27.008 5.865,29.066 4.596,30.335C3.327,31.604 1.269,31.604 0,30.335" style="fill:rgb(120,0,200);fill-rule:nonzero;"/>
+                </g>
+                <g transform="matrix(1,0,0,1,2192.68,414.94)">
+                    <path d="M0,30.335C-1.269,29.066 -1.269,27.008 0,25.739L25.739,0C27.008,-1.269 29.066,-1.269 30.335,0C31.604,1.269 31.604,3.327 30.335,4.596L4.596,30.335C3.327,31.604 1.269,31.604 0,30.335" style="fill:rgb(120,0,200);fill-rule:nonzero;"/>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

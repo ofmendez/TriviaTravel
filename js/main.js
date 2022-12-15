@@ -19,7 +19,8 @@ let timeleft = timeByAns-1
 let userID = ''
 window.views = views
 
-views.GoTo("Wellcome")
+views.GoTo("Ranking")
+//views.GoTo("Wellcome")
 
 window.TryLogin = (form)=>{
     getUserData().then((res)=>{

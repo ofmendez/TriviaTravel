@@ -5,49 +5,28 @@
 	text-decoration: none;
 	border: none;
 	outline: none;
+     box-sizing: border-box;
 }
 @font-face {
-	font-family: BebasNeueBook;
-	src: url(../Fonts/BebasNeueBook.woff);
+	font-family: RobotoRegular;
+	src: url(../Fonts/RobotoRegular.woff);
 }
 @font-face {
-	font-family: BebasNeueBold;
-	src: url(../Fonts/BebasNeueBold.woff);
+	font-family: RobotoMedium;
+	src: url(../Fonts/RobotoMedium.woff);
 }
 @font-face {
-	font-family: Montserrat;
-	src: url(../Fonts/Montserrat.woff);
+	font-family: RobotoBold;
+	src: url(../Fonts/RobotoBold.woff);
 }
 body {
-	background-color: #022a3a;
+	background-color: #fff;
+	overflow: hidden;
 }
 img {
 	width: 100%;
 }
-h2 {
-	font-family: BebasNeueBold;
-	font-size: 6vh;
-	color: white;
-	text-shadow: 2px 2px 5px black;
-}
-button {
-	background-color: transparent;
-}
-option{
-	color: #022a3a;
-}
-.TextosSubtitulos {
-	font-family: BebasNeueBold;
-	font-size: 3vh;
-	color: white;
-	text-shadow: 2px 2px 5px black;
-}
-.TextoParrafo {
-	font-family: Montserrat;
-	font-size: 1.8vh;
-	color: white;
-	text-shadow: 2px 2px 5px black;
-}
+
 .Wrapper {
 	height: 100%;
 	min-height: 100%;
@@ -66,7 +45,6 @@ option{
 	bottom: 0;
 	z-index: -1;
 }
-
 .Content {
 	margin: 0 auto;
 	display: block;
@@ -75,353 +53,413 @@ option{
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
-	width: calc(100vh / 2);
+	width: 100vw;
 	min-width: 300px;
-	height: 90vh;
-	max-height: 90vh;
+	height: 100vh;
+	max-height: 100vh;
 	min-height: 540px;
 }
 
-.ContenidoColumnas {
-	display: flex;
-	width: 100%;
-	align-items: center;
-	justify-content: center;
+.FontRegular{
+	font-family: RobotoRegular;
+	color: white;
+	text-align: left;
+	font-size:2vh;
 }
-.CuerpoContenido {
-	padding: 0 10%;
+
+.FontBold{
+	font-family: RobotoBold;
+	color: white;
+	text-align: left;
+	font-size:2.6vh;
 }
-.ColumnaFlex {
-	flex: 1;
-	float: inherit;
-	padding: 0 5%;
-}
-.Columna20Porciento {
-	width: 20%;
-	flex: 0 0 20%;
-}
-.Columna25Porciento {
-	width: 25%;
-	flex: 0 0 25%;
-}
-.Columna30Porciento {
-	width: 30%;
-	flex: 0 0 30%;
-}
-.Columna33Porciento {
-	width: 33.3%;
-	flex: 0 0 33.3%;
-}
-.Columna35Porciento {
-	width: 35%;
-	flex: 0 0 35%;
-}
-.Columna40Porciento {
-	width: 40%;
-	flex: 0 0 40%;
-}
-.Columna60Porciento {
-	width: 60%;
-	flex: 0 0 60%;
-}
-.Columna65Porciento {
-	width: 65%;
-	flex: 0 0 65%;
-}
-.Columna80Porciento {
-	width: 80%;
-	flex: 0 0 80%;
-}
-.BotonGradiente {
-	font-family: Montserrat;
-	font-weight: 800;
-	font-size: 3vh;
-	padding: 5px 15px;
-	text-align: center;
-	transition: 0.5s;
-	background-size: 200% auto;
-	background-image: linear-gradient(#ffaa2a 0%, #ff3800 100%);
-	border: 5px solid #ffc75c;
-	color: #fff;
-	width: 80%;
-	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-	cursor: pointer;
-	display: inline-block;
+
+/* width */
+::-webkit-scrollbar {
+	width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+	background: rgba(0,0,0,0.2);
 	border-radius: 100px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+	background: rgba(0,0,0,0.4);
+	border-radius: 100px;
+  }
+
+
+/* Registro */
+
+.ContenedorTituloRegistro{
+	width:78%;
+	margin: 0 auto;
 }
 
-/* De aqui en adelante inician las páginas */
-
-/* Pagina Index */
-.TitulosIndex {
-	margin: 20px 0;
-}
-/* Pagina Registro */
-.FondoTrasparenciaBarco {
-	background-image: url("../Images/RegistroFondo.png");
-	background-size: cover;
-	margin-top: -8vh;
-}
-.CurvaSeccion {
-	margin-top: -5vh;
-}
 input, .Desplegable {
-	border: 0.5vh solid white;
-	background-color: #ffffff52;
-	border-radius: 50px;
-	padding-left: 2vh;    
+	border: 0 solid white;
+	background-color: #fff;
+	border-radius: 15px;
+	padding-left: 5vh;    
 	padding-right: 2vh;   
-	height:4.3vh;
-	width: 87%;
+	height:5.5vh;
+	width: 80%;
+	filter: drop-shadow(0px 0px 3px #999);
 }
 ::placeholder, 
 input[type="text"],
 input[type="email"],
 select {
+	color: #AAAAAA;
+	font-family: RobotoRegular;
+	font-size: 1.7vh;
+}
+
+.icon {
+	padding: 1.6vh 12px;
+    width: 3.4vh;
+}
+
+i {
+	position: absolute;
+    left: 12vw;
+}
+
+.BotonRojo {
+	font-family: RobotoRegular;
+	font-size: 1.7vh;
+	padding: 1.2vh 15px;
+	text-align: center;
+	transition: 0.5s;
+	background-size: 200% auto;
+	background-image: linear-gradient(#E45050 0%, #C72929 100%);
+	color: #fff;
+	width: 40%;
+	
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	cursor: pointer;
+	display: inline-block;
+	border-radius: 100px;
+	z-index:99;
+}
+
+.BotonRanking{
+	position: absolute;
+	bottom: 3vh;
+	right:3vh;
+	width:6vh;
+	height:6vh;
+}
+
+
+.BotonRojoInstrucciones {
+	font-family: RobotoRegular;
+	font-size: 1.7vh;
+	padding: 1.2vh 5px;
+	text-align: center;
+	transition: 0.5s;
+	background-size: 200% auto;
+	background-image: linear-gradient(#E45050 0%, #C72929 100%);
+	color: #fff;
+	width: 40%;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	cursor: pointer;
+	display: inline-block;
+	border-radius: 100px;
+	z-index:99;
+}
+
+
+/* Preguntas */
+
+.FondoPregunta{
+	z-index: -999;
+	width:100vw;
+	height:100vh;
+	position:absolute;
+	top:0;
+	left:0;
+	background: #FCFCFC;
+		
+}
+
+.ColumnaLogo{
+	width:50%;
+	padding: 3vh;
+}
+
+.ContainerTiempo{
+	position: absolute;
+	right: 5vw;
+	top: 3vh;
+	background-color: rgba(0,0,0,0.5);
+	padding: 0.8vh 1.6vh;
+	font-family: RobotoRegular;
 	color: white;
-	font-family: BebasNeueBold;
+	border-radius: 50vh;
+	display: flex;
+    align-items: center;
+
+}
+
+.IconoTiempo{
+	width:2.5vh;
+	padding-right:1vh;
+}
+
+.TiempoJuego{
+position:relative;
+margin-top:2px;
+font-size: 2.5vh;
+}
+
+.SeccionPreguntas{
+background: rgb(198,40,40);
+background: linear-gradient(90deg, rgba(198,40,40,1) 0%, rgba(229,81,81,1) 100%);
+}
+
+.ContenedorPreguntas{
+height: 15vh;
+display:flex;
+align-items: center;
+text-align: center;
+background-color: #fff;
+border-radius: 1vh;
+width:80vw;
+margin:0 auto;
+padding: 5vh 8vw;
+}
+.TarjetaPosterior{
+	height: 1.5vh;
+background-color: rgba(255,255,255,0.5);
+border-radius: 0 0 1vh 1vh;
+width:70vw;
+margin:0 auto;
+
+}
+.EstiloPregunta{
+	font-size: 2vh;
+	font-family: RobotoRegular;
+	color:#000;
+}
+
+.SeccionRespuestas{
+	top:-7vh;
+	position: relative;
+}
+
+.EstiloRespuestas{
+	background-color: #fff;
+	width:70%;
+	margin: 0 auto;
+	color: #000;
+	filter: drop-shadow(0px 0px 3px #999);
+	border-radius: 15px;
+	display:block;
+	padding:2vh;
+	text-align: center;
+	font-family: RobotoMedium;
+	font-size: 2.5vh;
+
+
+}
+
+.RespuestaIncorrecta{
+border:#7800C8 solid 0.3vh;
+}
+
+.RespuestaIncorrecta::after {
+	content: url('../Images/Incorrecto.png');
+	
+	position: absolute;
+	right:2vh;
+}
+
+.RespuestaCorrecta{
+	border:#219F7E solid 0.3vh;
+	}
+
+	.RespuestaCorrecta::after {
+		content: url('../Images/Correcto.png');
+		
+		position: absolute;
+		right:2vh;
+	}
+
+.BotonCambiarPregunta{
+	font-family: RobotoRegular;
+	font-size: 1.7vh;
+	padding: 1.2vh 5px;
+	text-align: center;
+	transition: 0.5s;
+	background-color: transparent;
+	color: #AAAAAA;
+	width: 48vw;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	cursor: pointer;
+	display: flex;
+	margin: 0 auto;
+	align-items: center;
+	border-radius: 100px;
+	z-index:99;
+	border: 0.2vh solid #AAAAAA;
+	justify-content: center;
+}
+
+.IconoBoton{
+	width: 4vw;
+	margin-right: 1vw;
+}
+
+/* Resultados */
+.LogoResultados{
+	width:60%;
+}
+
+.ContenedorResultados{
+	background-color: white;
+	border-radius: 20px;
+	width: 70%;
+	margin: 0 auto;
+	filter: drop-shadow(0px 0px 3px #999);
+	padding:5%;
+}
+
+.JuegoFinalizado{
+	color:#818182;
+	font-family: RobotoRegular;
+	font-size: 3vh;
+
+}
+
+.TuPuntaje{
+	color:#000;
+	font-family: RobotoMedium;
+	font-size: 3.7vh;
+
+}
+
+.PuntajeResultados{
+	color:#EA002A;
+}
+
+.DatosJuego{
+	color:#000;
+	font-family: RobotoRegular;
 	font-size: 2.5vh;
 }
-/* Pagina Preguntas */
-.EstiloPregunta {
-	font-family: Montserrat;
-	font-size: 1.6vh;
-	padding: 1vh 2vh;
-	text-align: center;
-	background-size: 200% auto;
-	background-image: linear-gradient(#662481 0%, #755fa6 100%);
-	border: 0.5vh solid #dd5cff;
-	color: #fff;
-	border-radius: 100px;
+
+.PuntajeRespuestas{
+color: #7800C8;
+font-family: RobotoMedium;
 }
-.EstiloRespuesta {
-	border: 0.5vh solid #17fff2;
+
+.PuntajeTiempo{
+	font-family: RobotoMedium;
+color: #219F7E;
+}
+
+.InstruccionQR{
+	color: #818182;
+	font-family: RobotoRegular;
+	font-size: 1.8vh;
+}
+
+.CodigoQR{
+	width:40%;
+}
+
+.BotonIrARanking{
+display: flex;
+align-items: center;
+margin: 0 auto;
+justify-content: center;
+}
+  
+  
+
+/* Ranking */
+
+.FondoRanking{
+	z-index: -999;
+	width:100vw;
+	height:100vh;
+	position:absolute;
+	top:0;
+	left:0;
+	background: rgb(198,40,40);
+	background: linear-gradient(90deg, rgba(198,40,40,1) 0%, rgba(229,81,81,1) 100%);
+	
+}
+
+.ContainerRanking{
+	position: absolute;
+	right: 5%;
+	top: 3%;
+	
+	padding: 5px 10px;
+	font-size:3vh;
+	font-family: RobotoMedium;
 	color: white;
-	padding: 1vh 2vh;
-	border-radius: 50px;
-	background-color: #013b58;
-	font-family: Montserrat;
-	font-size: 2vh;
-	position: relative;
-	cursor: pointer;
+	
+	
 }
-.RespuestaCorrecta {
-	font-family: Montserrat;
-	font-size: 2vh;
-	padding: 1vh 2vh;
-	text-align: center;
-	background-size: 200% auto;
-	background-image: linear-gradient(#ffaa2a 0%, #ff3800 100%);
-	border: 5px solid #ffc75c;
-	color: #fff;
-	border-radius: 100px;
+.ContenedorPuntajes{
+height: 47vh;
+width:90%;
+margin: 0 auto;
+overflow: scroll;
+overflow-x: hidden;
 }
-
-.RespuestaIncorrecta {
-	font-family: Montserrat;
-	font-size: 2vh;
-	padding: 1vh 2vh;
-	text-align: center;
-	background-size: 200% auto;
-	background-image: linear-gradient(#eb5a67 0%, #bf0020 100%);
-	border: 0.5vh solid #ff5c61;
-	color: #fff;
-	border-radius: 100px;
+.EstiloPuntaje{
+ background-color: #fff;
+ padding: 2vh 3vw;
+ color: #000;
+ display: flex;
+ width: 90%;
+ margin: 0 auto;
+ border-radius: 15px;
+ font-size: 2vh;
+ font-family: RobotoMedium;
+ margin-bottom: 1.5vh;
 }
-
-.FondoTiempo {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	background-image: url("../Images/TiempoFondo.svg");
-	padding-bottom: 1.6vh;
-	/* padding-right: 0.4vh; */
-	min-height: 48px;
-	z-index: 9;
-	color: #013b58;
-	font-family: BebasNeueBold;
-	font-size: 3vh;
-	font-weight: 600;
-
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: contain;
-	height: 12vh;
+.EstiloPuntaje:first-of-type{
+	color:#E80029 !important;
 }
-
-/* Pagina resultados */
-.FondosResultados {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	padding-bottom: 1vh;
-	padding-right: 0.7vh;
-	min-height: 48px;
-	z-index: 9;
-	font-family: BebasNeueBold;
-	font-size: 3vh;
-	font-weight: 600;
-
-	background-repeat: no-repeat;
-	background-position: center center;
-	background-size: contain;
-	height: 12vh;
-}
-.FondoRespuestas {
-	background-image: url("../Images/FondoPuntaje01.svg");
-	color: #013b58;
-}
-.FondoTiempoTotal {
-	background-image: url("../Images/FondoPuntaje02.svg");
-	color: #fff;
-}
-.FondoPuntajeTotal {
-	background-image: url("../Images/FondoPuntaje03.svg");
-	color: #fff;
-}
-
-/* Página ranking */
-
-.ContenidosRanking {
-	font-family: BebasNeueBold;
-	font-size: 2.4vh;
-	color: #ffb400;
-	width: 100%;
-	background-color: #ffffff52;
-	border-radius: 50px;
-	border: 0.5vh solid #ffb400;
-	padding: 0.6vh;
-	margin-bottom: 1vh;
+.PosicionJugadorRanking{
+	width:14%;
 	text-align: left;
 }
 
-.ContenidosRanking ~ .ContenidosRanking {
-	color: white;
-	border: 0.5vh solid white;
+ .NombreJugadorRanking{
+	width:66%;
+	text-align: left;
 }
 
-.PosicionJugadorRanking {
-	width: 14%;
+ .PuntajeJugadorRanking{
+	width:20%;
+	text-align: right;
 }
-.NombreJugadorRanking {
-	width: 66%;
-}
-.PuntajeJugadorRanking {
-	width: 20%;
-}
-.IconosAmenazas {
-	animation: float 6s ease-in-out infinite;
-}
-.IconosAmenazas02 {
-	animation: float02 6s ease-in-out infinite;
-}
-.space1vh {
-    height:1vh;
-}
-.space2vh {
-    height:2vh;
-}
-.avoidEvents{
-	pointer-events: none;
-}
-.interactable{
+
+.BotonIrAInicio{
+font-family: RobotoRegular;
+	font-size: 1.7vh;
+	padding: 1.2vh 5px;
+	text-align: center;
+	transition: 0.5s;
+	background-color: transparent;
+	color: #fff;
+	width: 28vw;
+	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 	cursor: pointer;
-}
-.loading:after {
-	content: ' .';
-	animation: dots 1s steps(5, end) infinite;
-}
-
-/* Atributos */
-[transparent] { visibility: hidden; } 
-
-
-/* Animaciones */
-@keyframes float {
-	0% {
-		transform: translatey(0px);
-	}
-	50% {
-		transform: translatey(-20px);
-	}
-	100% {
-		transform: translatey(0px);
-	}
-}
-@keyframes float02 {
-	0% {
-		transform: translatey(0px);
-	}
-	50% {
-		transform: translatey(20px);
-	}
-	100% {
-		transform: translatey(0px);
-	}
-}
-
-@keyframes dots {
-	0%, 20% {
-		color: rgba(0,0,0,0);
-		text-shadow:
-		.25em 0 0 rgba(0,0,0,0),
-		.5em 0 0 rgba(0,0,0,0);
-	}
-	40% {
-		color: white;
-		text-shadow:
-		.25em 0 0 rgba(0,0,0,0),
-		.5em 0 0 rgba(0,0,0,0);
-	}
-	60% {
-		text-shadow:
-		.25em 0 0 white,
-		.5em 0 0 rgba(0,0,0,0);
-	}
-	80%, 100% {
-		text-shadow:
-		.25em 0 0 white,
-		.5em 0 0 white;
-	}
-}
-
-/* @ Media*/ 
-
-@media only screen and (max-width: 860px) {
-	.Content {
-		height: 100vh;
-		max-height:100vh;
-		min-height:100vh;
-		width: 100vw;
-		max-width:100vw;
-		min-width:100vw;
-		top: 0%;
-		-webkit-transform: translateY(0%);
-		-ms-transform: translateY(0%);
-		transform: translateY(0%);
-    }
-}
-
-
-
-div#tablasRR {
-max-height: 42vh;
-overflow-y: scroll;
-padding: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #ffffff44;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-    border-radius: 10px;
-    border: 2px solid #ffffff;
-}
-
-::-webkit-scrollbar {
-    width: 12px;
+	display: flex;
+	margin: 0 auto;
+	align-items: center;
+	border-radius: 100px;
+	z-index:99;
+	border: 0.2vh solid #fff;
+	justify-content: center;
 }

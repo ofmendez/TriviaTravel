@@ -1,66 +1,54 @@
-<img src="Images/FondoAgua.webp" id="background-video" alt="">
+<img src="Images/FondoRegistro.jpg" id="background-video" alt="">
 <div class="ImagenLogoSuperior">
-   <img src="Images/Logo.svg" />
+   <img src="Images/LogoSuperiorRegistro.svg" />
 </div>
-<div class="FondoTrasparenciaBarco">
-   <div style="height:18vh;"></div>
-   <h2>REGISTRO</h2>
-   <div style="height:40vh;"></div>
-</div>
-<div style="position:absolute; bottom:-3px; width:100%; ">
-   <img src="Images/BordeCurva.svg" class="CurvaSeccion" />
-   <div class="CuerpoContenido" style="background-color:#013b58; margin-top:-1vh;">
-      <div style="height:2vh;"></div>
-      <form onsubmit="return TryLogin(this)" action="#">
-         <p>
-            <input type="text" placeholder="NOMBRE COMPLETO" id="idNombreCompleto" name="nombreJugador" required
-               minlength="4" maxlength="50">
-         </p>
-         <div style="height:1vh;"></div>
-         <p>
-            <input type="text" placeholder="EMPRESA" id="idEmpresa" name="empresa" required minlength="4"
-               maxlength="50">
-         </p>
-         <div style="height:1vh;"></div>
-         <p>
-            <input type="email" placeholder="CORREO CORPORATIVO" id="idCorreo" name="mailJugador" required minlength="4"
-               maxlength="80">
-         </p>
-         <div style="height:1vh;"></div>
-         <p class="TextoParrafo" style="text-align: left;">
-            ¿Desea ser contactado para realizar un assessment de seguridad?
-         </p>
-         <div style="height:1vh;"></div>
-         <p>
-            <select required class="Desplegable" id="idAssesment" style="width: 100%; height:5vh;">
-               <option value="" disabled selected hidden>ELIJA UNA OPCIÓN</option>
-               <option>Si</option>
-               <option>No</option>
-            </select>
-         </p>
-         <div style="height:1vh;"></div>
 
-         <p class="TextoParrafo" style="text-align: left;">
-            ¿Cuántos buzones tiene su empresa?
-         </p>
-         <div style="height:1vh;"></div>
-         <p>
-            <select required class="Desplegable" id="idMailbox" style="width: 100%; height:5vh;">
-               <option value="" disabled selected hidden>ELIJA UNA OPCIÓN</option>
-               <option>Menos de 250</option>
-               <option>250-1000</option>
-               <option>1001-3000</option>
-               <option>3001+ </option>
-            </select>
-         </p>
-         <div style="height:3vh;"></div>
-         <p>
-            <button type="submit" class="BotonGradiente" style="min-width: 25vh;">
-               Ingresar
-               <!-- <a href="javascript:TryLogin()" ></a> -->
-            </button>
-         </p>
-      </form>
-      <div style="height:8vh;"></div>
+   <div style="height:4vh;"></div>
+   <div class="ContenedorTituloRegistro">
+   <p class="FontRegular">Trivia Travel</p>
+   <p class="FontBold">¿Estás listo para participar?<br>
+      Demuestra tus conocimientos.</p>
+      <div style="height:3vh;"></div>
    </div>
-</div>
+  
+
+   <form onsubmit="return TryLogin(this)" action="#">
+      <p>
+         <input type="text" placeholder="Nombre" id="idNombreCompleto" name="nombreJugador" required
+            minlength="4" maxlength="50">
+            <i class="icon"><img src="Images/RegistroNombre.png"/></i>
+      </p>
+      <div style="height:3.4vh;"></div>
+      <p>
+         <input type="email" placeholder="E-Mail" id="idCorreo" name="mailJugador" required minlength="4"
+            maxlength="80">
+            <i class="icon"><img src="Images/RegistroMail.png"/></i>
+      </p>
+      <div style="height:3.4vh;"></div>
+      <p>
+         <input type="text" placeholder="Celular" id="idEmpresa" name="empresa" required minlength="4"
+            maxlength="50">
+            <i class="icon"><img src="Images/RegistroCelular.png"/></i>
+      </p>
+      
+      
+      <div style="height:19vh;"></div>
+      <p>
+         <button type="submit" class="BotonRojo" style="min-width: 25vh;">
+            JUEGA
+            <!-- <a href="javascript:TryLogin()" ></a> -->
+         </button>
+      </p>
+   </form>
+
+  
+   <a onClick="GoRanking()" class="BotonRanking"><img src="Images/BotonRanking.svg"/></a>
+
+   
+
+
+
+
+
+
+

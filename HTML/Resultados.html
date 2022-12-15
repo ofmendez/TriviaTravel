@@ -1,31 +1,32 @@
-<img src="Images/FondoAgua.webp" id="background-video" alt="">
-   <div class="ImagenLogoSuperior">
-      <img src="Images/Logo.svg" />
-   </div>
-   <div class="CuerpoContenido">
-      <div style="height:8vh;"></div>
-      <div class="ContenidoColumnas">
-         <div class="ColumnaFlex Columna30Porciento">
-            <p class="TextosSubtitulos">RESPUESTAS<br>CORRECTAS</p>
-            <div style="height:2vh;"></div>
-            <div id="correctAnswers" class="FondosResultados FondoRespuestas">8/8</div>
-         </div>
-         <div class="ColumnaFlex Columna30Porciento">
-            <p class="TextosSubtitulos">TIEMPO<br>TOTAL</p>
-            <div style="height:2vh;"></div>
-            <div id="totalTime" class="FondosResultados FondoTiempoTotal">00:00</div>
-         </div>
-         <div class="ColumnaFlex Columna30Porciento">
-            <p class="TextosSubtitulos">PUNTAJE<br>TOTAL</p>
-            <div style="height:2vh;"></div>
-            <div id="score" class="FondosResultados FondoPuntajeTotal"></div>
-         </div>
-      </div>
-      <div style="position:absolute; bottom:-3px; left:0; width:100%; background-image: url('Images/Instrucciones01.png'); background-size:cover;background-position: center top;">
-         <div style="height:32vh;"></div>
-         <a onClick="GoRanking()" class="BotonGradiente" style="width:60%;">Ranking</a>
-         <div style="height:10vh;"></div>
-      </div>
-   </div>
-</div>
 
+<div style="height:7vh;"></div>
+   <div class="ImagenLogoSuperior">
+      <img class="LogoResultados" src="Images/LogoRojo.svg" />
+   </div>
+
+   <div style="height:5vh;"></div>
+
+<div class="ContenedorResultados">
+<p class="JuegoFinalizado">¡Juego Finalizado!</p>
+<p class="TuPuntaje">Tu Puntaje: <span class="PuntajeResultados">1800</span></p>
+<div style="height:1vh;"></div>
+<p class="DatosJuego">Respuestas Correctas: <span class="PuntajeRespuestas">5/5</span></p>
+<p class="DatosJuego">Tiempo Total: <span class="PuntajeTiempo">3:16</span></p>
+
+</div>
+<div style="height:4vh;"></div>
+<p class="InstruccionQR"> Escanéa nuestro Código QR y comienza a<br> crear tu foto personalizada para participar<br> por increíbles premios.</p>
+<div style="height:4vh;"></div>
+<img src="Images/QR.svg" class="CodigoQR" />
+
+<div style="height:4vh;"></div>
+
+<a onClick="GoRanking()" class="BotonRojoInstrucciones BotonIrARanking"><img class="IconoBoton" src="../Images/IconoRanking.svg"/>IR AL RANKING</a>
+
+
+<div style="position:absolute; bottom:-3px; left:0; width:100%; background-image: url('Images/Instrucciones01.png');">
+     
+      
+   <img src="Images/FooterResultados.svg">
+</div>
+</div>
