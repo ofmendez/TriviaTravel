@@ -19,26 +19,22 @@ let timeleft = timeByAns-1
 let userID = ''
 window.views = views
 
-views.GoTo("Ranking")
-//views.GoTo("Wellcome")
+views.GoTo("Registro")
+views.GoTo("Instrucciones01")
+// views.GoTo("Ranking")
 
 window.TryLogin = (form)=>{
-    getUserData().then((res)=>{
-        let exist = false
-        for (const u in res) 
-            if (res.hasOwnProperty(u)) 
-                exist |= u===emailToId(form.elements['idCorreo'].value)
-        if(exist)
-            GoRanking()
-        else
-            Login(form)
-        return false;
+    localStorage.setItem("UltimoIndex"  ,(parseInt( localStorage.getItem("UltimoIndex") ) || 0)+1);
+    let actualUltimoIndex = localStorage.getItem("UltimoIndex");
+    let listaIndices = JSON.parse(localStorage.getItem("listaIndices") ||JSON.stringify([]));
+    listaIndices.push( "m"+actualUltimoIndex )
+    localStorage.setItem("listaIndices", JSON.stringify(listaIndices));
 
-    }).catch((res)=> {
-        console.log("Error login: "+res)
-        alert("Ranking, Ha ocurrido un error, intente nuevamente.")
-        return false;
-    });
+    localStorage.setItem("Nombre_m"+actualUltimoIndex,  form.elements['idNombreCompleto'].value );
+    localStorage.setItem("Correo_m"+actualUltimoIndex,  form.elements['idCorreo'].value );
+    localStorage.setItem("Telefono_m"+actualUltimoIndex,  form.elements['idTelefono'].value );
+    views.GoTo("Instrucciones01")
+
     return false;
 }
 
@@ -49,21 +45,6 @@ window.GoToLobby = ()=>{
     });
 }
 
-const Login = (form)=>{
-    createUserData(
-        emailToId(form.elements['idCorreo'].value),
-        form.elements['idCorreo'].value,
-        form.elements['idNombreCompleto'].value,
-        form.elements['idEmpresa'].value,
-        form.elements['idAssesment'].value,
-        form.elements['idMailbox'].value
-    ).then((res)=>{
-        userID = emailToId(form.elements['idCorreo'].value);
-        views.GoTo("Instrucciones01")
-    }).catch(()=> {
-        alert("Ha ocurrido un error, intente nuevamente.")
-    })
-}
 
 const SetLobby = ()=>{
     views.GoTo("EligeAmenaza").then((res)=>{
