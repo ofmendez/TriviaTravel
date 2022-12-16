@@ -14,7 +14,7 @@ let totalErrors = 0
 let totalPoints = 0
 let pointsBySuccess = 100
 let multiplier = 1;
-let timeByAns = 60
+let timeByAns = 15
 let timeleft = timeByAns-1
 window.views = views
 
