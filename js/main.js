@@ -1,41 +1,60 @@
-import {InsertElement, RandomInt, ConmuteClassAndInner, AnimateWithTransparent, emailToId} from './utils.js'
-import {createUserData ,getUserData, updateScore} from "./database.js";
+import {InsertElement, ConmuteClassAndInner} from './utils.js'
 import {loadDataFile} from './files.js'
 import * as views from "./views.js";
 
 
 let Questions = {}    
+let TotalQuestions = {}    
+let actualQuestionCounter = 0
 let countdownTimer = {}
+let aviableShuffle = true
 let totalTime = 0 
-let aviable5050 = true
 let answered = {}
 let totalErrors = 0
-let streak = 0
 let totalPoints = 0
 let pointsBySuccess = 100
 let multiplier = 1;
 let timeByAns = 60
 let timeleft = timeByAns-1
-let userID = ''
 window.views = views
 
 views.GoTo("Registro")
-views.GoTo("Instrucciones01")
+// views.GoTo("Instrucciones01")
+// views.GoTo("PreguntaVertical")
 // views.GoTo("Ranking")
 
+loadDataFile("txt").then((res)=>{
+    TotalQuestions = res[0].Questions;
+});
+
 window.TryLogin = (form)=>{
-    localStorage.setItem("UltimoIndex"  ,(parseInt( localStorage.getItem("UltimoIndex") ) || 0)+1);
-    let actualUltimoIndex = localStorage.getItem("UltimoIndex");
+    if(PermitForm(form)){
+        localStorage.setItem("UltimoIndex"  ,(parseInt( localStorage.getItem("UltimoIndex") ) || 0)+1);
+        let actualUltimoIndex = localStorage.getItem("UltimoIndex");
+        let listaIndices = JSON.parse(localStorage.getItem("listaIndices") ||JSON.stringify([]));
+        listaIndices.push( "m"+actualUltimoIndex )
+        localStorage.setItem("listaIndices", JSON.stringify(listaIndices));
+    
+        localStorage.setItem("Nombre_m"+actualUltimoIndex,  form.elements['idNombreCompleto'].value );
+        localStorage.setItem("Correo_m"+actualUltimoIndex,  form.elements['idCorreo'].value );
+        localStorage.setItem("Telefono_m"+actualUltimoIndex,  form.elements['idTelefono'].value );
+        localStorage.setItem("Puntos_m"+actualUltimoIndex,  "00.00" );
+    
+        views.GoTo("Instrucciones01")
+    } else{
+        alert('Usuario ya participó.')
+    }
+     return false;
+}
+
+const PermitForm = (form)=>{
+    let exist = false;
     let listaIndices = JSON.parse(localStorage.getItem("listaIndices") ||JSON.stringify([]));
-    listaIndices.push( "m"+actualUltimoIndex )
-    localStorage.setItem("listaIndices", JSON.stringify(listaIndices));
-
-    localStorage.setItem("Nombre_m"+actualUltimoIndex,  form.elements['idNombreCompleto'].value );
-    localStorage.setItem("Correo_m"+actualUltimoIndex,  form.elements['idCorreo'].value );
-    localStorage.setItem("Telefono_m"+actualUltimoIndex,  form.elements['idTelefono'].value );
-    views.GoTo("Instrucciones01")
-
-    return false;
+    for (const i in listaIndices) {
+        exist |= (localStorage.getItem("Correo_"+listaIndices[i]) === form.elements['idCorreo'].value);
+        exist |= (localStorage.getItem("Telefono_"+listaIndices[i]) === form.elements['idTelefono'].value);
+    }
+    return !exist;
 }
 
 window.GoToLobby = ()=>{
@@ -46,48 +65,29 @@ window.GoToLobby = ()=>{
 }
 
 
-const SetLobby = ()=>{
-    views.GoTo("EligeAmenaza").then((res)=>{
-        let questionBtns = document.getElementsByClassName('questionBtn')
-        let ix =0
-        for (let b of questionBtns) {
-            b.id = ix++; 
-            if (b.id in answered){
-                b.src ='../Images/IconoPregunta0'+(parseInt(b.id)+1)+(answered[b.id]?'_Bien':'_Mal')+'.svg'
-            }else{
-                b.classList.add('interactable');
-                b.addEventListener('click', ()=> GoQuestion(b.id) );
-            }
-        }
-    });
-}
-
 window.GoRanking = ()=>{
     views.GoTo("Ranking").then((res)=>{
-        getUserData().then((res)=>{
-            FillRanking(res);
-            document.getElementById('loadingMessage').hidden =true;
-        }).catch((res)=> {
-            console.log("Error ranking: "+res)
-            alert("Ranking, Ha ocurrido un error, intente nuevamente.")
-        })
+        let listaIndices = JSON.parse(localStorage.getItem("listaIndices") ||JSON.stringify([]));
+        FillRanking(listaIndices);
     });
 }
 
-// GoRanking()
 
 //////////////////////////////////////////////
-const FillRanking = (usersObj)=>{
+const FillRanking = (listaIndices)=>{
     let users = []
-    for (const u in usersObj) 
-        if (usersObj.hasOwnProperty(u)) 
-            users.push(usersObj[u]);
+    for (const i in listaIndices) {
+        let user ={}
+        user.username= localStorage.getItem("Nombre_"+listaIndices[i] );
+        user.score= localStorage.getItem("Puntos_"+listaIndices[i] );
+        users.push(user);
+    }
     users.sort((a, b) => { return b.score - a.score; });
     
     let container = document.getElementById('tablasRR');
+    let tables = InsertElement('table',[],'',container);
     for (let i = 0; i < users.length; i++) {
-        let tables = InsertElement('table',['ContenidosRanking'],'',container);
-        let tr = InsertElement('tr',[],'',tables);
+        let tr = InsertElement('tr',['EstiloPuntaje'],'',tables);
         InsertElement('th',['PosicionJugadorRanking'],'#'+(i+1),tr);
         InsertElement('th',['NombreJugadorRanking'],users[i].username,tr);
         InsertElement('th',['PuntajeJugadorRanking'],users[i].score,tr);
@@ -97,60 +97,64 @@ const FillRanking = (usersObj)=>{
 
 const GoToResults = ()=>{
     document.body.classList.add('avoidEvents');
+    views.GoTo("Resultados").then((res)=>{
+        let actualUltimoIndex = localStorage.getItem("UltimoIndex");
+        localStorage.setItem("Puntos_m"+actualUltimoIndex,  totalPoints );
 
-    updateScore( userID, totalPoints).then((res)=>{
-        views.GoTo("Resultados").then((res)=>{
-            document.getElementById('correctAnswers').innerHTML =(Object.keys(answered).length-totalErrors)+'/'+Questions.length
-            document.getElementById('totalTime').innerHTML =new Date(totalTime*1000).toISOString().substring(14, 19);
-            document.getElementById('score').innerHTML = totalPoints;
-            document.body.classList.remove('avoidEvents');
-        });
-    }).catch(() =>{
-        alert("Ocurrió un error, intenta nuevamente.");
+        document.getElementById('correctAnswers').innerHTML =(Questions.length-totalErrors-1)+'/'+ (Questions.length-1)
+        document.getElementById('totalTime').innerHTML =new Date(totalTime*1000).toISOString().substring(14, 19);
+        document.getElementById('score').innerHTML = totalPoints;
         document.body.classList.remove('avoidEvents');
-        GoToResults();
     });
 }
 
+window.InitQuestionsAndGoFirst = ()=>{
+    ResetGeneralStatus();
+    Questions = TotalQuestions.sort(() => .5 - Math.random()).slice(0,6);
+    GoQuestion(actualQuestionCounter);
+}
 
+const ResetGeneralStatus = ()=>{
+    aviableShuffle = true;
+    actualQuestionCounter = 0;
+    answered = [];
+    totalErrors = 0;
+    totalPoints = 0;
+    totalTime = 0;
+}
 const GoQuestion = (qId)=>{
     views.GoTo("PreguntaVertical").then((res)=>{
         SetQuestionAndAnswers(Questions[qId]);
-        SetPowerUp5050(Questions[qId])
+        SetPowerUpShuffle(Questions[qId])
         RunTimer(Questions[qId])
-        SetPowerUpMultiplier()
     });
+}
+
+const UpdateStatus = (q, time, isCorrect)=>{
+    // answered[q.id] = isCorrect;
+    answered[actualQuestionCounter] = isCorrect;
+    totalErrors += isCorrect? 0 : 1;
+    AccumTime(time)
+    if (isCorrect)
+        AccumPoints(timeleft+1,pointsBySuccess)
 }
 
 
 //////////////////////////////////////////////////////////////////////
 
-const SetPowerUp5050 = (q)=>{
-    if(aviable5050)
-        document.getElementById('powerUp5050').hidden =  false;
-    document.getElementById('powerUp5050').addEventListener('click', () =>{
-        document.getElementById('powerUp5050').hidden = true;
-        Use5050(q)
+const SetPowerUpShuffle = (q)=>{
+    if(aviableShuffle)
+        document.getElementById('powerUpShuffle').removeAttribute("nodisplay")  ;
+    document.getElementById('powerUpShuffle').addEventListener('click', () =>{
+        UseShuffle(q)
     });
 }
 
-const Use5050 = (q)=>{
-    aviable5050 = false;
-    let idWrong1 = -1
-    let idWrong2 = -1
-    while(idWrong1 < 0  ){
-        let n1 = RandomInt(4) 
-        if(q.Answers[n1].isCorrect)
-            continue
-        idWrong1 = n1
-    }
-    while(idWrong2 < 0  ){
-        let n2 = RandomInt(4) 
-        if(q.Answers[n2].isCorrect || n2 === idWrong1)
-            continue
-        idWrong2 = n2
-    }
-    AnimateWithTransparent( document.getElementById('answer'+idWrong1), document.getElementById('answer'+idWrong2),200);
+const UseShuffle = (q)=>{
+    console.log("USED SHUFFLE!");
+    aviableShuffle = false;
+    clearInterval(countdownTimer);
+    GoQuestion(5);
 }
 
 
@@ -158,53 +162,37 @@ const AccumTime = (time)=>{
     totalTime += time;
 }
 const AccumPoints = (pointsT, pointsS)=>{
-    multiplier = streak >2 ? (streak>4? 3:2):1;
+    multiplier = 1;
     totalPoints += (pointsT+pointsS*multiplier)
 }
 
-const SetPowerUpMultiplier = ()=>{
-    multiplier = streak >1 ? (streak>3? ShowTurbo(false, true):ShowTurbo( true, false)):ShowTurbo(false, false);
-}
-
-const ShowTurbo = (showX2, showX3)=>{
-    document.getElementById('turboIcon2').hidden = !showX2;
-    document.getElementById('turboIcon3').hidden = !showX3
-}
 
 const AnimateAnswer = (element, classTarget, innerTarget, ansText, interval)=>{
+    clearInterval(countdownTimer);
     document.body.classList.add('avoidEvents');
-    ConmuteClassAndInner(element,classTarget,'EstiloRespuesta',innerTarget)
-    setTimeout(() => {ConmuteClassAndInner(element,'EstiloRespuesta',classTarget,ansText)}, interval);
-    setTimeout(() => {ConmuteClassAndInner(element,classTarget,'EstiloRespuesta',innerTarget)}, interval*2);
-    setTimeout(() => {ConmuteClassAndInner(element,'EstiloRespuesta',classTarget,ansText)}, interval*3);
-    setTimeout(() => {ConmuteClassAndInner(element,classTarget,'EstiloRespuesta',innerTarget)}, interval*4);
-    setTimeout(() => {ReturnLobbyOrResults(); document.body.classList.remove('avoidEvents');}, interval*5);
+    ConmuteClassAndInner(element,classTarget,'dumb',ansText)
+    setTimeout(() => {ConmuteClassAndInner(element,'dumb',classTarget,ansText)}, interval);
+    setTimeout(() => {ConmuteClassAndInner(element,classTarget,'dumb',ansText)}, interval*2);
+    setTimeout(() => {ConmuteClassAndInner(element,'dumb',classTarget,ansText)}, interval*3);
+    setTimeout(() => {ConmuteClassAndInner(element,classTarget,'dumb',ansText)}, interval*4);
+    setTimeout(() => {NextQuestionOrResults(); document.body.classList.remove('avoidEvents');}, interval*5);
 }
 
-const ReturnLobbyOrResults = ()=>{
-    clearInterval(countdownTimer);
-    if (Object.keys(answered).length === Questions.length || totalErrors === 3)
+const NextQuestionOrResults = ()=>{
+    if (Object.keys(answered).length === (Questions.length-1) )
         GoToResults();
     else
-        SetLobby();
-}
-const UpdateStatus = (q, time, isCorrect)=>{
-    answered[q.id] = isCorrect;
-    totalErrors += isCorrect? 0 : 1;
-    streak = isCorrect? streak + 1 : 0;
-    AccumTime(time)
-    if (isCorrect)
-        AccumPoints(timeleft+1,pointsBySuccess)
+        GoQuestion(++actualQuestionCounter);
 }
 
 const RunTimer = (question)=>{
     timeleft = timeByAns -1;
     countdownTimer = setInterval(() => {
-        document.getElementsByClassName("FondoTiempo")[0].textContent =timeleft
+        document.getElementsByClassName("TiempoJuego")[0].textContent =timeleft
         timeleft--;
         if (timeleft < 0) {
             UpdateStatus(question, timeByAns, false)
-            AnimateAnswer(document.getElementById('Pregunta'),'RespuestaIncorrecta','¡Incorrecto!', question.statement, 300);
+            AnimateAnswer(document.getElementById('EstiloPregunta'),'RespuestaIncorrecta','', question.statement, 300);
         }
     }, 1000);//Second by second
 }
@@ -219,10 +207,10 @@ const Answer = (ans, question)=>{
 
 
 const SetQuestionAndAnswers = (question)=>{
-    document.getElementById('Pregunta').innerHTML = question.statement;
+    document.getElementById('EstiloPregunta').innerHTML = question.statement;
     for(let ans of question.Answers){
-        InsertElement('div',['space'+(ans.id === '0'?'2vh':'1vh')],'',document.getElementById('answersList'));
-        InsertElement('div',['EstiloRespuesta'],ans.text,document.getElementById('answersList'),'answer'+ans.id).addEventListener("click", () => Answer(ans, question));
+        InsertElement('div',['space'+(ans.id === '0'?'4vh':'1_6vh')],'',document.getElementById('answersList'));
+        InsertElement('div',['EstiloRespuestas','dumb'],ans.text,document.getElementById('answersList'),'answer'+ans.id).addEventListener("click", () => Answer(ans, question));
     }
 }
 

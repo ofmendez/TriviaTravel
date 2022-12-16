@@ -6,11 +6,11 @@
    <img src="Images/LogoBlanco.svg" />
 </div>
 <div class="ContainerTiempo">
-<img src="Images/IconoTiempo.svg" class="IconoTiempo"> <span class="TiempoJuego">15</span>
+<img src="Images/IconoTiempo.svg" class="IconoTiempo"> <span class="TiempoJuego">60</span>
 </div>
 
 <div class="ContenedorPreguntas">
-<p class="EstiloPregunta">El campo de concentración de judíos más grande del mundo tuvo lugar en:</p>
+<p class="EstiloPregunta" id="EstiloPregunta"></p>
 </div>
 <div class="TarjetaPosterior"></div>
 <div style="height:9vh;"></div>
@@ -20,21 +20,21 @@
 <img src="Images/CurvaBlanca.svg" class="CurvaBlanca" />
 
 <p class="InstruccionQR">Selecciona la respuesta correcta.</p>
-
-<div style="height:4vh;"></div>
-<div class="EstiloRespuestas RespuestaCorrecta">Alemania</div>
-<div style="height:1.6vh;"></div>
-<div class="EstiloRespuestas">Polonia</div>
-<div style="height:1.6vh;"></div>
-<div class="EstiloRespuestas RespuestaIncorrecta">Estonia</div>
+<div id="answersList">
+</div>
 <div style="height:4vh;"></div>
 
-<a class="BotonCambiarPregunta" href=""><img src="Images/CambiarPregunta.svg" class="IconoBoton" />CAMBIAR PREGUNTA</a>
+<a nodisplay id="powerUpShuffle" class="BotonCambiarPregunta" ><img  src="Images/CambiarPregunta.svg" class="IconoBoton" />CAMBIAR PREGUNTA</a>
 
 </div>
 
 
-
+<!-- <div style="height:4vh;"></div>
+<div class="EstiloRespuestas ">Alemania</div>
+<div style="height:1.6vh;"></div>
+<div class="EstiloRespuestas">Polonia</div>
+<div style="height:1.6vh;"></div>
+<div class="EstiloRespuestas ">Estonia</div> -->
 
 
 <!--
@@ -43,12 +43,8 @@
       <div class="ContenidoColumnas" style="min-height: 27vh;">
          <div class="ColumnaFlex Columna20Porciento" style="align-self: flex-start;">
             <div style="height:2vh;"></div>
-          
             <div class="space1vh"></div>
-            
-            
             </div>
-            
             <div style="height:7vh;"></div>
          </div>
          <div class="ColumnaFlex Columna80Porciento">
@@ -67,7 +63,7 @@
 -->
 
 
-<div style="position:absolute; bottom:-3px; left:0; width:100%; background-image: url('Images/Instrucciones01.png');">
+<div style="position:absolute; bottom:-3px; left:0; width:100%; ">
      
       
    <img src="Images/FooterResultados.svg">

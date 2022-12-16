@@ -26,7 +26,9 @@ body {
 img {
 	width: 100%;
 }
-
+table{
+	display: inherit;
+}
 .Wrapper {
 	height: 100%;
 	min-height: 100%;
@@ -185,6 +187,9 @@ i {
 	background: #FCFCFC;
 		
 }
+
+
+
 
 .ColumnaLogo{
 	width:50%;
@@ -462,4 +467,59 @@ font-family: RobotoRegular;
 	z-index:99;
 	border: 0.2vh solid #fff;
 	justify-content: center;
+}
+
+
+/* Fabian*/
+
+.space4vh{
+	height:4vh;
+}
+.space1_6vh{
+	height:1.6vh;
+}
+.space1vh {
+    height:1vh;
+}
+.space2vh {
+    height:2vh;
+}
+
+[transparent] { visibility: hidden; } 
+[nodisplay] { display: none; } 
+
+.avoidEvents{
+	pointer-events: none;
+}
+.interactable{
+	cursor: pointer;
+}
+.loading:after {
+	content: ' .';
+	animation: dots 1s steps(5, end) infinite;
+}
+
+@keyframes dots {
+	0%, 20% {
+		color: rgba(0,0,0,0);
+		text-shadow:
+		.25em 0 0 rgba(0,0,0,0),
+		.5em 0 0 rgba(0,0,0,0);
+	}
+	40% {
+		color: white;
+		text-shadow:
+		.25em 0 0 rgba(0,0,0,0),
+		.5em 0 0 rgba(0,0,0,0);
+	}
+	60% {
+		text-shadow:
+		.25em 0 0 white,
+		.5em 0 0 rgba(0,0,0,0);
+	}
+	80%, 100% {
+		text-shadow:
+		.25em 0 0 white,
+		.5em 0 0 white;
+	}
 }
