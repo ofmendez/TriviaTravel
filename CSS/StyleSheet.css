@@ -449,6 +449,7 @@ overflow-x: hidden;
  .NombreJugadorRanking{
 	width:66%;
 	text-align: left;
+	text-transform: capitalize;
 }
 
  .PuntajeJugadorRanking{
