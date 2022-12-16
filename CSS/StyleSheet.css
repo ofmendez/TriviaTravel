@@ -110,6 +110,7 @@ input, .Desplegable {
 	height:5.5vh;
 	width: 80%;
 	filter: drop-shadow(0px 0px 3px #999);
+	text-transform: capitalize !important; 
 }
 ::placeholder, 
 input[type="text"],
@@ -163,12 +164,12 @@ i {
 	font-size: 1.7vh;
 	padding: 1.2vh 5px;
 	text-align: center;
-	transition: 0.5s;
+
 	background-size: 200% auto;
 	background-image: linear-gradient(#E45050 0%, #C72929 100%);
 	color: #fff;
 	width: 40%;
-	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	
 	cursor: pointer;
 	display: inline-block;
 	border-radius: 100px;
@@ -457,11 +458,11 @@ font-family: RobotoRegular;
 	font-size: 1.7vh;
 	padding: 1.2vh 5px;
 	text-align: center;
-	transition: 0.5s;
+	
 	background-color: transparent;
 	color: #fff;
 	width: 28vw;
-	transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+	
 	cursor: pointer;
 	display: flex;
 	margin: 0 auto;
